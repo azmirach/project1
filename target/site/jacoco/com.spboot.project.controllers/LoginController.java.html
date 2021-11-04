@@ -29,30 +29,30 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
     @GetMapping(&quot;/login&quot;)
     public String index(Model model) {
 
-<span class="fc" id="L32">        User user = new User();</span>
-<span class="fc" id="L33">        model.addAttribute(&quot;user&quot;, user);</span>
+<span class="nc" id="L32">        User user = new User();</span>
+<span class="nc" id="L33">        model.addAttribute(&quot;user&quot;, user);</span>
 
-<span class="fc" id="L35">        return &quot;login&quot;;</span>
+<span class="nc" id="L35">        return &quot;login&quot;;</span>
     }
 
     @PostMapping(&quot;/login&quot;)
     public String store(@ModelAttribute(&quot;user&quot;) User user,
         HttpServletRequest request, RedirectAttributes ra) throws Exception {
-<span class="fc" id="L41">        HttpSession session = request.getSession(true);</span>
+<span class="nc" id="L41">        HttpSession session = request.getSession(true);</span>
 
-<span class="fc" id="L43">        User obj = userInterface.auth(user.getEmail(), user.getPassword());</span>
+<span class="nc" id="L43">        User obj = userInterface.auth(user.getEmail(), user.getPassword());</span>
 
-<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if (obj == null) {</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if (obj == null) {</span>
 <span class="nc" id="L46">            ra.addFlashAttribute(&quot;error&quot;, &quot;Invalid email or password!&quot;);</span>
 <span class="nc" id="L47">            return &quot;redirect:/login&quot;;</span>
         }
 
-<span class="fc" id="L50">        session.setAttribute(&quot;id&quot;, obj.getId());</span>
-<span class="fc" id="L51">        session.setAttribute(&quot;email&quot;, obj.getEmail());</span>
-<span class="fc" id="L52">        session.setAttribute(&quot;name&quot;, obj.getName());</span>
-<span class="fc" id="L53">        session.setAttribute(&quot;loggedIn&quot;, true);</span>
+<span class="nc" id="L50">        session.setAttribute(&quot;id&quot;, obj.getId());</span>
+<span class="nc" id="L51">        session.setAttribute(&quot;email&quot;, obj.getEmail());</span>
+<span class="nc" id="L52">        session.setAttribute(&quot;name&quot;, obj.getName());</span>
+<span class="nc" id="L53">        session.setAttribute(&quot;loggedIn&quot;, true);</span>
 
-<span class="fc" id="L55">        return &quot;redirect:/&quot;;</span>
+<span class="nc" id="L55">        return &quot;redirect:/&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

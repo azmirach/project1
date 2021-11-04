@@ -49,8 +49,7 @@ public class JenisTest {
         mockMvc.perform(post("/jenis/jstore")
                 .flashAttr("jenis", jenis))
                 .andExpect(status().is3xxRedirection());
-              
-    }
+           }
          @Test
     public void createJenisWithEmptyName() throws Exception {
         Throwable e = null;
@@ -62,13 +61,12 @@ public class JenisTest {
             jenis.setTarif(19000);
            
             when(repository.save(jenis))
-                    .thenThrow(new Exception("please fill out this field"));
+                    .thenThrow(new Exception("please enter your name"));
             service.jstore(jenis);
         } catch (Exception ex) {
             e = ex;
             message = ex.getMessage();
         }
-        
-        Assertions.assertTrue(e instanceof Exception);
+               Assertions.assertTrue(e instanceof Exception);
     }
 }

@@ -64,13 +64,36 @@ public class PelangganTest {
         pelanggan.setAlamat("Cibubur");
            
             when(repository.save(pelanggan))
-                    .thenThrow(new Exception("please fill out this field"));
+                    .thenThrow(new Exception("please fill with telephone number"));
             service.pstore(pelanggan);
         } catch (Exception ex) {
             e = ex;
             message = ex.getMessage();
         }
+                
+        Assertions.assertTrue(e instanceof Exception);
         
+         }
+    
+    @Test
+    public void createPelangganWithEmptyAlamat() throws Exception {
+        Throwable e = null;
+        String message = null;
+        
+        try {
+             Pelanggan pelanggan = new Pelanggan();
+           pelanggan.setName("Raisa");
+        pelanggan.setTelephone("08192736");
+        pelanggan.setAlamat("");
+           
+            when(repository.save(pelanggan))
+                    .thenThrow(new Exception("please fill with your address"));
+            service.pstore(pelanggan);
+        } catch (Exception ex) {
+            e = ex;
+            message = ex.getMessage();
+            
+        }
         Assertions.assertTrue(e instanceof Exception);
     }
-}
+    }

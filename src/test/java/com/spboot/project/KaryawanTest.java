@@ -48,8 +48,7 @@ public class KaryawanTest {
                
         mockMvc.perform(post("/karyawan/kstore")
                 .flashAttr("karyawan", karyawan))
-                .andExpect(status().is3xxRedirection());
-              
+                .andExpect(status().is3xxRedirection());           
     }
          @Test
     public void createKaryawanWithEmptyTelephone() throws Exception {
@@ -62,13 +61,12 @@ public class KaryawanTest {
             karyawan.setTelephone("");
            
             when(repository.save(karyawan))
-                    .thenThrow(new Exception("please fill out this field"));
+                    .thenThrow(new Exception("please fill with telephone number"));
             service.kstore(karyawan);
         } catch (Exception ex) {
             e = ex;
             message = ex.getMessage();
         }
-        
-        Assertions.assertTrue(e instanceof Exception);
+                Assertions.assertTrue(e instanceof Exception);
     }
 }

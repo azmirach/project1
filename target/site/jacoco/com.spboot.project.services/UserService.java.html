@@ -30,46 +30,46 @@ import org.springframework.stereotype.Service;
 
     @Override
     public void register(User user) throws Exception {
-<span class="fc" id="L33">        String hashed = this.hash(user.getPassword());</span>
-<span class="fc" id="L34">        user.setPassword(hashed);</span>
+<span class="nc" id="L33">        String hashed = this.hash(user.getPassword());</span>
+<span class="nc" id="L34">        user.setPassword(hashed);</span>
         
-<span class="fc" id="L36">        this.userRepository.save(user);</span>
-<span class="fc" id="L37">    }</span>
+<span class="nc" id="L36">        this.userRepository.save(user);</span>
+<span class="nc" id="L37">    }</span>
 
     @Override
     public User auth(String email, String password) throws Exception {
-<span class="fc" id="L41">        User user = userRepository.findByEmail(email);</span>
+<span class="nc" id="L41">        User user = userRepository.findByEmail(email);</span>
 
-<span class="pc bpc" id="L43" title="1 of 2 branches missed.">        if (user == null) {</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (user == null) {</span>
 <span class="nc" id="L44">            return null;</span>
         }
 
-<span class="pc bpc" id="L47" title="1 of 2 branches missed.">        if (!this.match(user.getPassword(), password)) {</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (!this.match(user.getPassword(), password)) {</span>
 <span class="nc" id="L48">            return null;</span>
         }
 
-<span class="fc" id="L51">        return user;</span>
+<span class="nc" id="L51">        return user;</span>
     }
 
     private String hash(String password) throws Exception {
-<span class="fc" id="L55">        MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</span>
+<span class="nc" id="L55">        MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</span>
 
-<span class="fc" id="L57">        byte[] messageDiggest = md.digest(password.getBytes());</span>
+<span class="nc" id="L57">        byte[] messageDiggest = md.digest(password.getBytes());</span>
 
-<span class="fc" id="L59">        BigInteger no = new BigInteger(1, messageDiggest);</span>
+<span class="nc" id="L59">        BigInteger no = new BigInteger(1, messageDiggest);</span>
 
-<span class="fc" id="L61">        String hashText = no.toString(16);</span>
-<span class="pc bpc" id="L62" title="1 of 2 branches missed.">        while (hashText.length() &lt; 32) {</span>
+<span class="nc" id="L61">        String hashText = no.toString(16);</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        while (hashText.length() &lt; 32) {</span>
 <span class="nc" id="L63">            hashText = &quot;0&quot; + hashText;</span>
         }
 
-<span class="fc" id="L66">        return hashText;</span>
+<span class="nc" id="L66">        return hashText;</span>
     }
 
     private boolean match(String password, String rawPassword)
             throws Exception {
-<span class="fc" id="L71">        rawPassword = this.hash(rawPassword);</span>
-<span class="fc" id="L72">        return password.equals(rawPassword);</span>
+<span class="nc" id="L71">        rawPassword = this.hash(rawPassword);</span>
+<span class="nc" id="L72">        return password.equals(rawPassword);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
